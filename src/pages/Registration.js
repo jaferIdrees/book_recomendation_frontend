@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import "./styles.css";
 
-const registerUser = (user) => {
-    fetch("http://localhost:4000/signup", {
+const registerUser = (user) => fetch("http://localhost:4000/signup", {
         method: "post",
         headers: {
             "Content-Type": "application/json",
@@ -15,19 +15,15 @@ const registerUser = (user) => {
                 console.log(res.headers.get("Authorization"));
                 localStorage.setItem("token", res.headers.get("Authorization"));
                 return res.json();
-            } else {
-                throw new Error(res);
             }
-        })
-        .then((json) => console.dir(json))
-        .catch((err) => console.error(err));
-}
+            return res.json;
+        });
 
 const Registration = () => {
+    const [ userStatus, setUserStatus ] = useState();
     const {
         register,
-        handleSubmit,
-        formState: { errors }
+        handleSubmit
     } = useForm();
     const onSubmit = async (data) => {
         console.log(data);
@@ -37,13 +33,15 @@ const Registration = () => {
             password: data.password
         }
         console.log(JSON.stringify({ user }))
-        await registerUser(user);
-        /*await sleep(2000);
-        if (data.username === "bill") {
-            alert(JSON.stringify(data));
-        } else {
-            alert("There is an error");
-        }*/
+        await registerUser(user).then((res) => {
+            console.log(res);
+            const message = res.status === 200 ? '' : 'Registration failed:'
+            setUserStatus(`${message} ${res.statusText}`)})
+        .catch((res)=> {
+            console.log(res)
+            setUserStatus('Error')
+        });
+        
     };
 
     return (
@@ -63,8 +61,7 @@ const Registration = () => {
             <input type="password" {...register("password")} />
 
             <div style={{ color: "red" }}>
-                {Object.keys(errors).length > 0 &&
-                    "There are errors, check your console."}
+                {userStatus && userStatus}
             </div>
             <input type="submit" />
         </form>
