@@ -12,11 +12,9 @@ const registerUser = (user) => fetch("http://localhost:4000/signup", {
     })
         .then((res) => {
             if (res.ok) {
-                console.log(res.headers.get("Authorization"));
                 localStorage.setItem("token", res.headers.get("Authorization"));
-                return res.json();
             }
-            return res.json;
+            return res.json();
         });
 
 const Registration = () => {
@@ -34,9 +32,8 @@ const Registration = () => {
         }
         console.log(JSON.stringify({ user }))
         await registerUser(user).then((res) => {
-            console.log(res);
-            const message = res.status === 200 ? '' : 'Registration failed:'
-            setUserStatus(`${message} ${res.statusText}`)})
+            const message = res.status.code === 200 ? '' : 'Registration failed:'
+            setUserStatus(`${message} ${res.status.message}`)})
         .catch((res)=> {
             console.log(res)
             setUserStatus('Error')
