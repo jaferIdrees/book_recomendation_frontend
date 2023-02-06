@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
-const registerUser = (user) => fetch("http://localhost:4000/login", {
-        method: "post",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user }),
-    })
-        .then((res) => {
-            if (res.ok) {
-                localStorage.setItem("token", res.headers.get("Authorization"));
-                return res.json();
-            }
-        });
+import { loginUser } from '../API/user_authentication';
 
 
 const Login = () => {
@@ -27,7 +14,7 @@ const Login = () => {
             email: data.email,
             password: data.password
         }
-        await registerUser(user).then((res)=> {
+        await loginUser(user).then((res)=> {
             setUserStatus(res.status.message);
         }).catch(() => {
             setUserStatus('Login failed');

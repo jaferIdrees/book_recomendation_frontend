@@ -1,21 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { signupUser } from '../API/user_authentication';
 
 import "./styles.css";
-
-const registerUser = (user) => fetch("http://localhost:4000/signup", {
-        method: "post",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user }),
-    })
-        .then((res) => {
-            if (res.ok) {
-                localStorage.setItem("token", res.headers.get("Authorization"));
-            }
-            return res.json();
-        });
 
 const Registration = () => {
     const [ userStatus, setUserStatus ] = useState();
@@ -31,7 +18,7 @@ const Registration = () => {
             password: data.password
         }
         console.log(JSON.stringify({ user }))
-        await registerUser(user).then((res) => {
+        await signupUser(user).then((res) => {
             const message = res.status.code === 200 ? '' : 'Registration failed:'
             setUserStatus(`${message} ${res.status.message}`)})
         .catch((res)=> {
