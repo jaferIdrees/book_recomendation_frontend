@@ -3,22 +3,25 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import search_books from "../API/open_library_search";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BookSearch = () => {
-    const [value, setValue] = useState(),
-        onInput = ({target:{value}}) => setValue(value);
+    const [value, setTitle] = useState(''),
+    onInput = ({target:{value}}) => setTitle(value);;
+    const [bookList,setBookList ] = useState([]);
+    
     const onFormSubmit = async (e) => {
           e.preventDefault()
           console.log(value);
-          await search_books(value).then((res) => console.log(res));
+          await search_books(value).then((res) => setBookList(res));
 
-          setValue()
+          setTitle('')
         }
     /*const handleSubmit = (data) => {
         console.log(Object.keys(data));
     }*/
     return (
+        <>
         <Form onSubmit={onFormSubmit}>
             <InputGroup className="mb-3">
                 <Form.Control
@@ -28,11 +31,13 @@ const BookSearch = () => {
                     onInput={onInput}
                     value={value}
                 />
-                <Button type="submit" id="button-addon2">
+                <Button type="submit" variant="outline-primary" id="button-addon2">
                     Button
                 </Button>
             </InputGroup>
         </Form>
+        {bookList.map((book) => <h3>{book.title}</h3>)}
+        </>
     )
 }
 

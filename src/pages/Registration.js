@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { signupUser } from '../API/user_authentication';
 
-import "./styles.css";
+//import "./styles.css";
 
 const Registration = () => {
     const [ userStatus, setUserStatus ] = useState();

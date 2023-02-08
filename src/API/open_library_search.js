@@ -4,8 +4,17 @@ const search_books = async (title) => {
     const book_list = await fetch(q)
     .then((res) => res.json())
     .then((response) => response.docs.splice(0,10));
-
-    return book_list;
+    // title, author, first_sentence, lang, publisher
+    console.log(book_list)
+    const books = book_list.map((book)=> ({
+        title: book.title,
+        author: book.author_name[0],
+        first_sentence: book.first_sentence[0],
+        lang: book.language[0],
+        isbn: book.isbn[0],
+        //publisher: book.publisher[0]
+    }))
+    return books;
 }
 
 export default search_books;
