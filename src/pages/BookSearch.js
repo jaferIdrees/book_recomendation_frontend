@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import search_books from "../API/open_library_search";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import BookRecord from "../components/BookRecord";
 
 const BookSearch = () => {
     const [value, setTitle] = useState(''),
@@ -36,7 +37,7 @@ const BookSearch = () => {
                 </Button>
             </InputGroup>
         </Form>
-        {bookList.map((book) => <h3>{book.title}</h3>)}
+        {bookList.map((book) => <BookRecord key={book.isbn} book={book}/>)}
         </>
     )
 }
