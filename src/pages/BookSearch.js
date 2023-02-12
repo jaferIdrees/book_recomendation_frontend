@@ -33,7 +33,7 @@ const BookSearch = () => {
                     value={value}
                 />
                 <Button type="submit" variant="outline-primary" id="button-addon2">
-                    Button
+                    Search
                 </Button>
             </InputGroup>
         </Form>

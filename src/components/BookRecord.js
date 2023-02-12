@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 const BookRecord = (props) => {
     console.log('prp', props)
-    const { title, author, first_sentence, lang, publisher, cover } = { ...props.book };
+    const { title, author, first_sentence, lang, publisher, cover, isbn } = { ...props.book };
     const coverUrl = (cover ? `https://covers.openlibrary.org/b/id/${cover}-M.jpg` : universal_cover);
     return (
         <Container className="border rounded gap-3 m-3 py-3">
@@ -17,13 +17,14 @@ const BookRecord = (props) => {
                 <Col xs={12} md={6}>
                     <p className="display-6 text-center">{title}</p>
                     <div class="text-center">
-                        <Image src={coverUrl} fluid={true} alt="Cover" className="shadow" />
+                        <Image src={coverUrl} fluid={true} alt="Cover" className="shadow img-thumbnail" />
                     </div>
                 </Col>
                 <Col xs={6} md={4} className="row align-items-center">
                     <p className="display-8">Author: {author}</p>
                     <p className="display-8">Language: {lang}</p>
                     <p className="display-8"> Publisher: {publisher}</p>
+                    <p className="display-8"> ISBN: {isbn}</p>
                 </Col>
                 <Col className="row align-items-center pe-3">
                 <Button variant="primary">Add to my library</Button>
