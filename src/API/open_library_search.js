@@ -6,7 +6,7 @@ const search_books = async (title) => {
     .then((response) => response.docs.splice(0,10));
     // title, author, first_sentence, lang, publisher
     console.log(book_list)
-    const books = book_list.map((book)=> ({
+    const books = book_list.filter((book)=> book.isbn).map((book)=> ({
         title: book.title,
         cover: book.cover_i,
         author: book.author_name? book.author_name[0] : '',
