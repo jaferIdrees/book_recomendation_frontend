@@ -14,7 +14,7 @@ const MyBooks = () => {
     if (bookList){
     return (
         <>
-        {bookList.map((book) => <BookRecord key={book.isbn} book={book}/>)}
+        {bookList.map((book) => <BookRecord key={book.isbn} book={book} btn="review"/>)}
         </>
     );} else return null;
 }
