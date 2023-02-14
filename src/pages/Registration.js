@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { signupUser } from '../API/user_authentication';
 
-//import "./styles.css";
+import "./styles.css";
 
 const Registration = () => {
     const [ userStatus, setUserStatus ] = useState();
@@ -11,7 +11,7 @@ const Registration = () => {
         handleSubmit
     } = useForm();
     const onSubmit = async (data) => {
-        console.log(data);
+        console.log('it',data);
         const user = {
             full_name: data.full_name,
             email: data.email,

@@ -5,18 +5,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import universal_cover from '../assets/images/universal_Book_cover.png';
 import Button from 'react-bootstrap/Button';
+import add_book from "../API/add_book";
 
 const BookRecord = (props) => {
     console.log('prp', props)
-    const { title, author, first_sentence, lang, publisher, cover, isbn } = { ...props.book };
-    const coverUrl = (cover ? `https://covers.openlibrary.org/b/id/${cover}-M.jpg` : universal_cover);
+    const { title, author, first_sentence, lang, publisher, cover_image, isbn, publication_date } = { ...props.book };
+    const coverUrl = (cover_image ? `https://covers.openlibrary.org/b/id/${cover_image}-M.jpg` : universal_cover);
+    const add_to_lib = () => add_book(props.book)
     return (
         <Container className="border rounded gap-3 m-3 py-3">
             {/* Stack the columns on mobile by making one full-width and the other half-width */}
             <Row>
                 <Col xs={12} md={6}>
                     <p className="display-6 text-center">{title}</p>
-                    <div class="text-center">
+                    <div className="text-center">
                         <Image src={coverUrl} fluid={true} alt="Cover" className="shadow img-thumbnail" />
                     </div>
                 </Col>
@@ -25,9 +27,10 @@ const BookRecord = (props) => {
                     <p className="display-8">Language: {lang}</p>
                     <p className="display-8"> Publisher: {publisher}</p>
                     <p className="display-8"> ISBN: {isbn}</p>
+                    <p className="display-8"> Publish year: {publication_date}</p>
                 </Col>
                 <Col className="row align-items-center pe-3">
-                <Button variant="primary">Add to my library</Button>
+                    <Button variant="primary" id={isbn} onClick={add_to_lib}>Add to my library</Button>
                 </Col>
             </Row>
             {first_sentence &&
