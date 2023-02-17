@@ -24,6 +24,7 @@ const BookSearch = () => {
     return (
         <>
         <Form onSubmit={onFormSubmit}>
+            <p className="display-5 text-center ">Search Open Library</p>
             <InputGroup className="mb-3">
                 <Form.Control
                     placeholder="Book title"
