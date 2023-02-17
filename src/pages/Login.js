@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { loginUser } from '../API/user_authentication';
 
-
 const Login = () => {
     const [ userStatus, setUserStatus ] = useState()
     const {
@@ -23,17 +22,17 @@ const Login = () => {
     return (
         <>
             {userStatus  && <h3>{userStatus}</h3>}
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <h1>User login</h1>
+            <form onSubmit={handleSubmit(onSubmit)} className="container-fluid d-flex flex-column gap-3">
+                <h1 className='text-center'>User login</h1>
 
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email" className='mt-3'>Email</label>
                 <input
                     placeholder="bluebill1049@hotmail.com"
                     type="text"
                     {...register("email")}
                 />
 
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password" className='mt-3'>Password</label>
                 <input type="password" {...register("password")} />
 
                 <input type="submit" />
