@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { signupUser } from '../API/user_authentication';
 
-import "./styles.css";
-
 const Registration = () => {
     const [ userStatus, setUserStatus ] = useState();
     const {
@@ -29,19 +27,19 @@ const Registration = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>User registration</h1>
-            <label htmlFor="full_name">Full Name</label>
+        <form onSubmit={handleSubmit(onSubmit)} className="container-fluid d-flex flex-column gap-3">
+            <h1 className='text-center'>User registration</h1>
+            <label htmlFor="full_name" className='mt-3'>Full Name</label>
             <input placeholder="Bill" {...register("full_name")} />
 
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" className='mt-3'>Email</label>
             <input
                 placeholder="bluebill1049@hotmail.com"
                 type="text"
                 {...register("email")}
             />
 
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className='mt-3'>Password</label>
             <input type="password" {...register("password")} />
 
             <div style={{ color: "red" }}>
