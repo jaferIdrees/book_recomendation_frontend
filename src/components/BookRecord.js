@@ -1,19 +1,16 @@
 import React from "react";
 import Image from 'react-bootstrap/Image'
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import universal_cover from '../assets/images/universal_Book_cover.png';
 import Button from 'react-bootstrap/Button';
 import add_book from "../API/add_book";
-import review_book_api from "../API/review_book";
 
 const BookRecord = (props) => {
     const { title, author, first_sentence, lang, publisher, cover_image, isbn, publication_date } = props.book;
     const {btn} = props;
     const coverUrl = (cover_image ? `https://covers.openlibrary.org/b/id/${cover_image}-M.jpg` : universal_cover);
     const add_to_lib = () => add_book(props.book)
-    const review_book = () => review_book_api(isbn);
     return (
         <div className="border rounded d-flex gap-3 m-3 py-3">
             {/* Stack the columns on mobile by making one full-width and the other half-width */}
