@@ -1,11 +1,8 @@
 const search_books = async (title) => {
     const q = 'https://openlibrary.org/search.json?title='+title.replace(/ /g, '+')//.concat(title.split().join('+'));
-    console.log(q)
     const book_list = await fetch(q)
     .then((res) => res.json())
     .then((response) => response.docs.splice(0,10));
-    // title, author, first_sentence, lang, publisher
-    console.log(book_list)
     const books = book_list.filter((book)=> book.isbn).map((book)=> ({
         title: book.title,
         cover_image: book.cover_i,

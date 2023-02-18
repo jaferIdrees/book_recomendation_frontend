@@ -1,5 +1,4 @@
 const review_book_api = (review) => {
-    console.log('review', review.isbn)
     fetch("http://localhost:4000/api/v1/books/7/reviews", {
         method: "post",
         headers: {

@@ -13,7 +13,6 @@ export const signupUser = (user) => fetch(signupURL, {
         if (res.ok) {
             localStorage.setItem("token", res.headers.get("Authorization"));
         }
-        console.log('test')
         return res.json();
     });
 

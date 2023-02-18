@@ -25,7 +25,6 @@ const Review = (props) => {
       content: revContent,
       rating
     };
-    console.log(review)
     review_book_api(review);
   }
 

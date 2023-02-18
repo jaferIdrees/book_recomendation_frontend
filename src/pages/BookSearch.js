@@ -13,14 +13,9 @@ const BookSearch = () => {
     
     const onFormSubmit = async (e) => {
           e.preventDefault()
-          console.log(value);
           await search_books(value).then((res) => setBookList(res));
-
           setTitle('')
         }
-    /*const handleSubmit = (data) => {
-        console.log(Object.keys(data));
-    }*/
     return (
         <>
         <Form onSubmit={onFormSubmit}>

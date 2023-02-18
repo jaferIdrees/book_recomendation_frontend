@@ -1,5 +1,4 @@
 const retrieveUserBooks = async(id) => {
-    console.log(id)
     const current_user_url = `http://localhost:4000/api/v1/users/${id}`
     const bookList = await fetch(current_user_url, {
         headers: {
@@ -7,7 +6,6 @@ const retrieveUserBooks = async(id) => {
             Authorization: localStorage.getItem("token"),
         },
     }).then((response) => response.json()).then((result)=> result);
-    console.log(bookList)
     return bookList;
 }
 
