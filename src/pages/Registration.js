@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { signupUser } from '../API/user_authentication';
 
 const Registration = () => {
-    const [ userStatus, setUserStatus ] = useState();
+    const navigate = useNavigate();
+    const [userStatus, setUserStatus] = useState();
     const {
         register,
         handleSubmit
@@ -15,12 +17,15 @@ const Registration = () => {
             password: data.password
         }
         await signupUser(user).then((res) => {
-            const message = res.status.code === 200 ? '' : 'Registration failed:'
-            setUserStatus(`${message} ${res.status.message}`)})
-        .catch(()=> {
-            setUserStatus('Error')
-        });
-        
+            if (res.status.code === 200) {
+                navigate('/')
+            }
+            setUserStatus(`${res.status.message}`)
+        })
+            .catch(() => {
+                setUserStatus('Error')
+            });
+
     };
 
     return (
