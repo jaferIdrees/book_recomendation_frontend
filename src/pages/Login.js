@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../API/user_authentication';
 
 const Login = () => {
+    const navigate = useNavigate()
     const [ userStatus, setUserStatus ] = useState()
     const {
         register,
@@ -14,7 +16,8 @@ const Login = () => {
             password: data.password
         }
         await loginUser(user).then((res)=> {
-            setUserStatus(res.status.message);
+            setUserStatus(res.status.message)
+            navigate('/users/:id')
         }).catch(() => {
             setUserStatus('Login failed');
         });
