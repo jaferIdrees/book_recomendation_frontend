@@ -40,5 +40,5 @@ export const user_logged = async() => {
             "Content-Type": "application/json",
             Authorization: localStorage.getItem("token"),
         },
-    }).then((response) => response.ok).then((result)=> result);
+    }).then((response) => response.ok);
 }

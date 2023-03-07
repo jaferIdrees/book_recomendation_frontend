@@ -1,3 +1,4 @@
+import Alert from 'react-bootstrap/Alert';
 import { user_logged } from "./user_authentication"
 
 const add_book = async (book) => {
@@ -10,6 +11,10 @@ const add_book = async (book) => {
             },
             body: JSON.stringify({ book }),
         })
+    } else {
+        <Alert variant='warning'>
+          You need to login!
+        </Alert>
     }
 }
 
