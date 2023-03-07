@@ -20,7 +20,7 @@ const BookSearch = () => {
         <>
         <Form onSubmit={onFormSubmit}>
             <p className="display-5 text-center ">Search Open Library</p>
-            <InputGroup className="mb-3">
+            <InputGroup className="mb-3 p-3">
                 <Form.Control
                     placeholder="Book title"
                     aria-label="Book title"
