@@ -35,7 +35,6 @@ export const user_logged = async() => {
     if (!token) return false;
     const current_user_url = baseURL + '/current_user'
     await fetch(current_user_url, {
-        
         headers: {
             "Content-Type": "application/json",
             Authorization: localStorage.getItem("token"),
