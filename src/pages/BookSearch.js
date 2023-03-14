@@ -33,7 +33,7 @@ const BookSearch = () => {
                 </Button>
             </InputGroup>
         </Form>
-        {bookList.map((book) => <BookRecord key={book.isbn} book={book}/>)}
+        {bookList.length > 0 && bookList.map((book) => <BookRecord key={book.isbn} book={book}/>)}
         </>
     )
 }

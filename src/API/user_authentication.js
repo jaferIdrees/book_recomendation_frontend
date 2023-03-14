@@ -34,10 +34,10 @@ export const user_logged = async() => {
     const token = localStorage.getItem("token");
     if (!token) return false;
     const current_user_url = baseURL + '/current_user'
-    await fetch(current_user_url, {
+    return await fetch(current_user_url, {
         headers: {
             "Content-Type": "application/json",
             Authorization: localStorage.getItem("token"),
         },
-    }).then((response) => response.ok);
+    }).then((res) => res.ok );
 }
