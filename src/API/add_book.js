@@ -12,7 +12,7 @@ const add_book = async (book) => {
             body: JSON.stringify({ book }),
         })
     } else {
-        window.alert('You need to login!')
+        alert('You need to login!')
     }
 }
 
